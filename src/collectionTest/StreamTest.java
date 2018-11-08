@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class StreamTest {
     public static void main(String[] args) {
-//        List<Student> students = new ArrayList<Student>() {
+//        ListDemo<Student> students = new ArrayListDemo<Student>() {
 //            {
 //                add(new Student(20160001, "孔明", 20, 1, "土木工程", "武汉大学"));
 //                add(new Student(20160002, "伯约", 21, 2, "信息安全", "武汉大学"));
@@ -22,7 +22,7 @@ public class StreamTest {
 //            }
 //        };
 //        String[] strs = {"java8", "is", "easy", "to", "use"};
-//        List<String[]> distinctStrs = Arrays.stream(strs)
+//        ListDemo<String[]> distinctStrs = Arrays.stream(strs)
 //                .map(str -> str.split(""))  // 映射成为Stream<String[]>
 //                //.flatMap(Arrays::stream)
 //                //.distinct()
