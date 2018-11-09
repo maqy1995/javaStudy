@@ -21,7 +21,7 @@ public class StreamTest {
 //            }
 //        };
 //        String[] strs = {"java8", "is", "easy", "to", "use"};
-//        List<String[]> distinctStrs = Arrays.stream(strs)
+//        ListDemo<String[]> distinctStrs = Arrays.stream(strs)
 //                .map(str -> str.split(""))  // 映射成为Stream<String[]>
 //                //.flatMap(Arrays::stream)
 //                //.distinct()
