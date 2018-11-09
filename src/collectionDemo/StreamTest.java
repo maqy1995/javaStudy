@@ -42,3 +42,4 @@ public class StreamTest {
         //distinctStrs.forEach(s-> System.out.println(s+": "));
     }
 }
+
