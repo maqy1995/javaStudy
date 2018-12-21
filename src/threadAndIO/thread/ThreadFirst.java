@@ -10,7 +10,7 @@ public class ThreadFirst {
                 System.out.println("threadAndIO.thread end");
             }
         };
-        t.start();
+        t.run();
         System.out.println("main end");
     }
 }
