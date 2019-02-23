@@ -22,7 +22,8 @@ public class Practice12 {
     }
 
     //O(logn)的算x^n次方
-    public double PowerLogN(double base, int exponent){
+    public double PowerWithUnsignedExponent(double base, int exponent){
+        //logn 的时间复杂度
         // 非零数的0次方都是1
         if(exponent == 0) {
             return 1;
@@ -32,7 +33,7 @@ public class Practice12 {
             return base;
         }
         double result = 0.0;
-        result = PowerLogN(base, exponent >> 1);
+        result = PowerWithUnsignedExponent(base, exponent >> 1);
         result = result * result;
         //判断exponent是奇数还是偶数
         if((exponent & 1) == 1){
@@ -65,10 +66,10 @@ public class Practice12 {
         // 如果exponent是负数，则先取整数，将结果取倒数即可
         if(exponent < 0) {
             exponent = -1 * exponent;
-            result = 1.0/PowerLogN(base, exponent);
+            result = 1.0/PowerWithUnsignedExponent(base, exponent);
         }else {
             //因为之前已经考虑过exponent为0的情况了，这里exponent一定是大于0
-            result = PowerLogN(base, exponent);
+            result = PowerWithUnsignedExponent(base, exponent);
         }
         return result;
     }
