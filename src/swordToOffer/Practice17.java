@@ -9,7 +9,7 @@ public class Practice17 {
     public boolean isSame(TreeNode treeNode1,TreeNode treeNode2){
         //如果都为空返回true，如果一方为空一方不为空，则返回false
         if(treeNode1 == null || treeNode2 == null){
-            if(treeNode1 == null && treeNode2 == null){
+            if(treeNode2 == null){
                 return true;
             }else {
                 return false;
