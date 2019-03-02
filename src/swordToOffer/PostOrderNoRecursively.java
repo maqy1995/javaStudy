@@ -25,9 +25,9 @@ public class PostOrderNoRecursively {
         while (!auxiliaryStack.empty() ){
             p = auxiliaryStack.peek();
             //此时应该访问p了
-            if((p.right == null && last == p.left) || p.right == last){
+            if((p.left == null && p.right == null)||(p.right == null && last == p.left) || p.right == last){
                 auxiliaryStack.pop();
-                System.out.println(p.val);
+                System.out.print(p.val+" ");
                 last = p;
             }else{
                 if(p.right != null) {
@@ -54,7 +54,7 @@ public class PostOrderNoRecursively {
         auxiliaryStack.push(root);
         while (!auxiliaryStack.empty()){
             p = auxiliaryStack.pop();
-            if(p == auxiliaryStack.peek()){
+            if(!auxiliaryStack.empty() && p == auxiliaryStack.peek()){
                 //说明孩子还没被访问
                 if(p.right != null) {
                     auxiliaryStack.push(p.right);
@@ -66,8 +66,15 @@ public class PostOrderNoRecursively {
                 }
             }else {
                 //此时孩子都已经访问过了，访问p
-                System.out.println(p.val);
+                System.out.print(p.val+" ");
             }
         }
+    }
+
+    public static void main(String[] args) {
+        TreeNode root = Utils.makeTreeDefault();
+        PostOrderNoRecursively postOrderNoRecursively = new PostOrderNoRecursively();
+        postOrderNoRecursively.postOrderNoRecursively1(root);
+        //postOrderNoRecursively.postOrderNoRecursively2(root);
     }
 }
