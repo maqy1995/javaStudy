@@ -1,6 +1,7 @@
 package swordToOffer;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 /**
@@ -42,13 +43,18 @@ public class Practice26 {
     }
 
     public static void main(String[] args) {
-        String s = "abc";
-        char[] t = {'a','b','c'};
-        System.out.println(t.toString());
-        Practice26 practice26 = new Practice26();
-        ArrayList<String> result = practice26.Permutation(s);
-        for(String string : result){
-            System.out.println(string);
-        }
+//        String s = "abc";
+//        char[] t = {'a','b','c'};
+//        System.out.println(t.toString());
+//        Practice26 practice26 = new Practice26();
+//        ArrayList<String> result = practice26.Permutation(s);
+//        for(String string : result){
+//            System.out.println(string);
+//        }
+        TreeMap treeSet = new TreeMap();
+        treeSet.put(3,1);
+        treeSet.put(1,2);
+        treeSet.put(5,3);
+        System.out.println(treeSet.firstKey());
     }
 }
