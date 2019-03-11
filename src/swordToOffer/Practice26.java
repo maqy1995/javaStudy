@@ -1,7 +1,6 @@
 package swordToOffer;
 
 import java.util.ArrayList;
-import java.util.TreeMap;
 import java.util.TreeSet;
 
 /**
@@ -13,11 +12,43 @@ import java.util.TreeSet;
 public class Practice26 {
     ArrayList<String> result = new ArrayList<>();
     TreeSet<String> treeSet = new TreeSet<>();//用于保证有序和去除重复数据
+    StringBuilder sb = new StringBuilder();
     public void swap(char[] chars,int i,int j){
         char t = chars[i];
         chars[i] = chars[j];
         chars[j] = t;
     }
+    //求字符数组的组合
+    public void combination(char[] chars,int index, int m){
+        if(m > 0){
+            if( (chars.length - index) == m){
+                sb.append(chars,index,chars.length-index);
+                treeSet.add(sb.toString());
+                sb.delete(0,sb.length());
+            }else {
+                //选第一个元素，然后从后面n-1个中选m-1个
+                sb.append(chars[index]);
+                combination(chars,index+1,m-1);
+                //不选第一个元素，从后面n-1个中选m个
+                combination(chars,index+1,m);
+            }
+        }else {
+            if(sb.length() != 0){
+                treeSet.add(sb.toString());
+                sb.delete(0,sb.length());
+            }
+        }
+    }
+    public ArrayList<String> combination(char[] chars){
+        for(int i = 1;i <= chars.length;i++){
+            combination(chars,0,i);
+        }
+        while (!treeSet.isEmpty()){
+            result.add(treeSet.pollFirst());
+        }
+        return result;
+    }
+    //求出字符数组的排列
     public void permutation(char[] chars,int index){
         if(index == chars.length-1){
             treeSet.add(new String(chars));
@@ -43,18 +74,11 @@ public class Practice26 {
     }
 
     public static void main(String[] args) {
-//        String s = "abc";
-//        char[] t = {'a','b','c'};
-//        System.out.println(t.toString());
-//        Practice26 practice26 = new Practice26();
-//        ArrayList<String> result = practice26.Permutation(s);
-//        for(String string : result){
-//            System.out.println(string);
-//        }
-        TreeMap treeSet = new TreeMap();
-        treeSet.put(3,1);
-        treeSet.put(1,2);
-        treeSet.put(5,3);
-        System.out.println(treeSet.firstKey());
+        String s = "abc";
+        Practice26 practice26 = new Practice26();
+        ArrayList<String> result = practice26.combination(s.toCharArray());
+        for(String string : result){
+            System.out.println(string);
+        }
     }
 }
