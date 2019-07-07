@@ -27,7 +27,6 @@ public class QuickSort {
             quickSort(a,start,left-1);
             quickSort(a,left+1,end);
         }
-
     }
 
     public static void main(String[] args) {

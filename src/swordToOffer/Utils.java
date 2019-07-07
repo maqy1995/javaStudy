@@ -19,7 +19,7 @@ public class Utils {
                 }
             }
             if(((i+1)*2)<order.length){
-                if(treeNodes[((i+1)*2-1)].val != '#'){
+                if(treeNodes[((i+1)*2)].val != '#'){
                     treeNodes[i].right = treeNodes[((i+1)*2)];
                 }
             }
@@ -34,7 +34,8 @@ public class Utils {
      * @return
      */
     public static TreeNode makeTreeDefault(){
-        char[] t = {10,6,14,4,8,12,16};
+        //char[] t = {10,6,14,4,8,12,16};
+        char[] t = {10,6,9,4,'#','#','#',2};
         return  makeTree(t);
     }
     public static void main(String[] args) {
