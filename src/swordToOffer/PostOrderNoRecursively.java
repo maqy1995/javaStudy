@@ -15,7 +15,6 @@ public class PostOrderNoRecursively {
      */
     public void postOrderNoRecursively1(TreeNode root){
         //在外部判断根结点是否为null
-
         //辅助栈
         Stack<TreeNode> auxiliaryStack = new Stack<>();
         //将根结点放入栈中

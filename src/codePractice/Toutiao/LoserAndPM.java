@@ -32,15 +32,15 @@ class PM {
     public Idea getFirstIdea(int workerTime) {
         PriorityQueue<Idea> pq2 = new PriorityQueue<>(new Comparator<Idea>() {
             // 优先级顺序为优先等级高的，所需时间最少的，最早提出的
-            // 注意排序一般是递增！！！
+            // 注意排序是递增！！！
             @Override
             public int compare(Idea o1, Idea o2) {
                 if (o1.priority != o2.priority) {
                     return o2.priority - o1.priority;
                 } else if (o1.neededTime != o2.neededTime) {
-                    return o2.neededTime - o1.neededTime;
+                    return o1.neededTime - o2.neededTime;
                 } else {
-                    return o2.submitTime - o1.submitTime;
+                    return o1.submitTime - o2.submitTime;
                 }
             }
         });
@@ -64,11 +64,10 @@ class PM {
 class Worker {
     //每个程序员空闲的时候就会查看每个PM尚未执行并且最想完成的一个idea,
     // 然后从中挑选出所需时间最小的一个idea独立实现，如果所需时间相同则选择PM序号最小的。
-    int freeTime = 0;
+    int freeTime;
 
-    public void work(Idea idea) {
-        this.freeTime += idea.neededTime;
-        idea.endTime = this.freeTime; //该idea的结束时间
+    public Worker(int time) {
+        this.freeTime =time;//该idea的结束时间
     }
 }
 
@@ -86,14 +85,17 @@ public class LoserAndPM {
                         return o1.PMid - o2.PMid;
                     }
                 }
-                if(o1.submitTime <= worker.freeTime){
-                    return -1;
+                if(o1.submitTime > worker.freeTime && o2.submitTime > worker.freeTime){
+                    //否则谁先提出来就是队首
+                    return o1.submitTime - o2.submitTime;
                 }
-                if(o2.submitTime <= worker.freeTime){
+                if(o1.submitTime > worker.freeTime){
                     return 1;
                 }
-                //否则谁先提出来就是队首
-                return o1.submitTime - o2.submitTime;
+                if(o2.submitTime > worker.freeTime){
+                    return -1;
+                }
+                return 0;
             }
         });
 
@@ -126,7 +128,7 @@ public class LoserAndPM {
             }
         });
         for (int i = 0; i < numWorker; i++) {
-            workerPriorityQueue.add(new Worker());
+            workerPriorityQueue.add(new Worker(0));
         }
         PM[] pms = new PM[numPM];
         for (int i = 0; i < numPM; i++) {
@@ -142,12 +144,6 @@ public class LoserAndPM {
             pms[idea.PMid - 1].pq1.add(idea);
         }
 
-        PriorityQueue<Idea> ideasPerPM = new PriorityQueue<>(new Comparator<Idea>() {
-            @Override
-            public int compare(Idea o1, Idea o2) {
-                return o1.neededTime - o2.neededTime;
-            }
-        });
         //每个Idea都要运行一次
         while(true){
             Worker worker = workerPriorityQueue.poll();
@@ -155,10 +151,8 @@ public class LoserAndPM {
             if(workIdea==null){
                 break;
             }
-            if(workIdea.submitTime>worker.freeTime){
-                worker.freeTime = workIdea.submitTime;
-            }
-            worker.work(workIdea);
+            workIdea.endTime = Integer.max(workIdea.submitTime, worker.freeTime) + workIdea.neededTime;
+            worker.freeTime=workIdea.endTime;
             //写回去
             workerPriorityQueue.add(worker);
         }

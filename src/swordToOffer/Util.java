@@ -35,10 +35,16 @@ public class Util {
     }
 
     public static void main(String[] args) {
-        int[] num = {7,1,6,3,5};
-        System.out.println("index:"+partition(num,0,num.length-1));
-        for(int t : num){
-            System.out.print(t+" ");
+//        int[] num = {7,1,6,3,5};
+////        System.out.println("index:"+partition(num,0,num.length-1));
+////        for(int t : num){
+////            System.out.print(t+" ");
+////        }
+        int n = 5;
+        int sum = 1;
+        while ( (n=(n & (n-1))) !=0){
+            sum++;
         }
+        System.out.println(sum);
     }
 }
