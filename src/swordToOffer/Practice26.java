@@ -18,7 +18,7 @@ public class Practice26 {
         chars[i] = chars[j];
         chars[j] = t;
     }
-    //求字符数组的组合
+    //求字符数组的组合,求从index开始，长度为m的组合
     public void combination(char[] chars,int index, int m){
         if(m > 0){
             if( (chars.length - index) == m){
@@ -74,7 +74,7 @@ public class Practice26 {
     }
 
     public static void main(String[] args) {
-        String s = "abc";
+        String s = "aaa";
         Practice26 practice26 = new Practice26();
         ArrayList<String> result = practice26.combination(s.toCharArray());
         for(String string : result){

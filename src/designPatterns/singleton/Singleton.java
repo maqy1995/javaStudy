@@ -1,4 +1,4 @@
-package designPatterns;
+package designPatterns.singleton;
 
 /**
  * 单例模式
@@ -15,7 +15,7 @@ public class Singleton {
     private Singleton() {
     }
 
-    // 声明为 private 表明静态内部类中能在该类中被访问
+    // 声明为 private 表明静态内部类中只能在该类中被访问
     private static class SingletonHolder {
         private static final Singleton singletonInstance = new Singleton();
     }

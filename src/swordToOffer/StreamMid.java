@@ -129,9 +129,15 @@ public class StreamMid {
                 }
             }
         }else {
-            //应该插入到最小堆中
+            //应该插入到右边的最小堆中
             if(minHeap.heap.isEmpty()){
-                minHeap.insert(num);
+                //注意一种特殊情况,第二个数来的时候比第一个数小
+                if(num<maxHeap.getMax()){
+                    minHeap.insert(maxHeap.getMax());
+                    maxHeap.heap.set(0,num);
+                }else{
+                    minHeap.insert(num);
+                }
             }else {
                 //如果遇上需要插入右边时，数比左边的最大值小（堆顶），则左边的堆顶插入右边，该数插入到左边的堆中
                 int a = maxHeap.getMax();

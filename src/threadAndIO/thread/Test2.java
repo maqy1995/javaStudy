@@ -1,7 +1,22 @@
 package threadAndIO.thread;
 
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Test2 {
     public static ThreadLocalExt t1 = new ThreadLocalExt();
+
+    Lock lock = new ReentrantLock();
+    Condition condition = lock.newCondition();
+
+    public void test(){
+        try {
+            condition.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         if (t1.get() == null) {
